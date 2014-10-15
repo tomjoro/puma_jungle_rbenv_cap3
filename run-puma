@@ -1,0 +1,5 @@
+#!/bin/bash
+app=$1; config=$2; log=$3;
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+cd $app && exec bundle exec puma -C $config 2>&1 >> $log
