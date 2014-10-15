@@ -11,6 +11,7 @@ These scripts make it possible to run jungle init scripts with a capistrano 3 an
 
 So.. you can install you scripts as instructed in the puma site:
 * https://github.com/puma/puma/tree/master/tools/jungle/init.d
+
 And you can setup your capistrano 3 like here:
 * https://github.com/seuros/capistrano-puma
 
