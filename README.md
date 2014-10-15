@@ -15,10 +15,12 @@ So.. you can install you scripts as instructed in the puma site:
 And you can setup your capistrano 3 like here:
 * https://github.com/seuros/capistrano-puma
 
+
 You can then start puma with
-	/etc/init.d/puma start
+* /etc/init.d/puma start
+
 OR
-	cap staging puma:start
+* cap staging puma:start
 	
 So they play nice together. If you server reboots, your puma restarts nicely, but you can still use capistrano 3 after that to get status and restart at anytime.
 
