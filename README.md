@@ -41,7 +41,6 @@ The problem with existing scripts is that
 
 So, if you like this that's great. Maybe I should submit a pull request to the jungle scripts.
 
-"I love PUMA! Threads are the new NIO :) " <-- (c) Thomas O'Rourke (you can quote me on that)
-
+"I love PUMA! Threads are the new NIO :) " (you can quote me on that)
 Thomas O'Rourke
 <thomas.orourke@upstreaminno.com>
