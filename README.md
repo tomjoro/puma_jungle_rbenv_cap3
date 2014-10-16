@@ -5,6 +5,13 @@ Jungle init scripts for puma that play nice with rbenv and capistrano 3
 
 Note: These were tested on Ubuntu 14.04
 
+These use the *standard* capistrano 3 generated nginx.conf and puma.rb
+Just be sure to create the directories 
+* shared/log
+* shared/tmp/pids
+* shared/tmp/sockets 
+
+
 Also, these scripts should work for rvm if you just change the run-puma to do the rvm stuff instead of rbenv.
 
 These scripts make it possible to run jungle init scripts with a capistrano 3 and rbenv setup.
