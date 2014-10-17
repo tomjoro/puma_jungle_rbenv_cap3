@@ -68,7 +68,7 @@ Deploy the project
 * cap staging deploy
 
 I generated the nginx site, so it is at app/config/nginx.conf, but symlinked my nginx sites-enabled into the config in my project instead of copying it to sites-enabled
-* Replacing the 'server' with your real app name *
+* Replacing the 'server' with your real app name (and *inside of nginx* also replace 'server' with your appname
 
   * sudo ln -nfs /home/deploy/apps/server/current/config/nginx.conf /etc/nginx/sites-enabled/server
 
