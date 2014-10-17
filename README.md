@@ -13,8 +13,9 @@ You've decided to deploy Rails on the world best production environment. Natural
 * Systemd (because you realized upstart is a dying thing)
 * Pumactl (because pumactl works! and is very nice)
 
-So at the end of the day you *want* you all these to work, and play nicely together:
+So at the end of the day you *want* you all these to work, and play nicely together.
 
+- you have a deploy user that *doesn't* need sudo rights at all!
 - cap staging deploy
 - cap puma:start
 - cap nginx:restart
@@ -24,6 +25,7 @@ So at the end of the day you *want* you all these to work, and play nicely toget
 etc.
 
 With this much awesomeness, you assume someone else has this working already. I found lots of different examples, but nothing with this exact stack that worked the way I expected it to. Plus I wanted to use the default scripts, as much as possible.
+Also, I deploy as "deploy" user and I don't give it any sudo rights! So I have to deploy thie manually.
 
 Here's how you use this setup:
 First read this about systemd scripts
@@ -38,15 +40,50 @@ Now do these, but use my scripts instead.
 
 # Instructions
 
-* I symlinked my nginx sites-enabled into the config in my project.
-  * /etc/nginx/sites-enabled
-  * server -> /home/deploy/apps/server/current/config/nginx.conf
+Follow instructions on installing jungle scripts.
 
-These use the *standard* capistrano 3 generated nginx.conf and puma.rb, Just be sure to create the directories:
+Replace /etc/puma.conf with my version (but change 'server' to your app-name). You can have multiple lines, with multiple apps.
 
+Replace /usr/local/bin/run-puma with my version (uses rbenv, but you can change it to use rvm if you want)
+
+Setup capistrano 3 in your project *with* CAP file like this:
+```
+# Load DSL and Setup Up Stages
+require 'capistrano/setup'
+
+# Includes default deployment tasks
+require 'capistrano/deploy'
+
+require 'capistrano/rails'
+# require 'capistrano/rvm'
+require 'capistrano/rbenv'
+require 'capistrano/bundler'
+require 'capistrano/puma'
+``
+
+Add a puma.rb in app/config that has daemonize=true (because it seems to be false by default now)
+
+Deploy the project
+
+* cap staging deploy
+
+I generated the nginx site, so it is at app/config/nginx.conf, but symlinked my nginx sites-enabled into the config in my project instead of copying it to sites-enabled
+
+  * sudo ln -nfs /home/deploy/apps/server/current/config/nginx.conf /etc/nginx/sites-enabled/server
+
+So if you change it, you'll need to restart nginx.
+
+
+Create these directories (I should have these as part of deploy...)
 * shared/log
 * shared/tmp/pids
-* shared/tmp/sockets 
+* shared/tmp/sockets
+
+
+That's it
+
+
+# Running
 
 These scripts should work for rvm if you just change the run-puma to do the rvm stuff instead of rbenv.
 
@@ -56,6 +93,7 @@ You can then start puma with either of these:
 
 * /etc/init.d/puma start (on server)
 * cap staging puma:start
+* cap staging puma:status
 
 
 The problem with existing scripts is that:
