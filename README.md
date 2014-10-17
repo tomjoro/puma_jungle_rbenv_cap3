@@ -11,9 +11,10 @@ You've decided to deploy Rails on the world best production environment. Natural
 * Systemd (because you realized upstart is a dying thing)
 * Pumactl (because pumactl works! and is very nice)
 
-So at the end of the day you all these to work:
+So at the end of the day you *want* you all these to work, and play nicely together
 - cap staging deploy
 - cap puma:start
+- cap nginx:restart
 - /etc/init.d/puma start (on server)
 - /etc/init.d/puma stop (on server)
 - everything should start on server reboot AND you can still use cap puma:restart, etc.
