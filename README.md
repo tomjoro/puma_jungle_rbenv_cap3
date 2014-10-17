@@ -1,8 +1,10 @@
 puma_jungle_rbenv_cap3
 ======================
 
+#Background
 
 You've decided to deploy Rails on the world best production environment. Naturally, you've chosen:
+
 * Ubuntu 14.04
 * Nginx (of course! easy decision)
 * Puma (threads are the new nio, and Puma is awesomeness)
@@ -11,7 +13,8 @@ You've decided to deploy Rails on the world best production environment. Natural
 * Systemd (because you realized upstart is a dying thing)
 * Pumactl (because pumactl works! and is very nice)
 
-So at the end of the day you *want* you all these to work, and play nicely together
+So at the end of the day you *want* you all these to work, and play nicely together:
+
 - cap staging deploy
 - cap puma:start
 - cap nginx:restart
@@ -24,51 +27,53 @@ With this much awesomeness, you assume someone else has this working already. I 
 
 Here's how you use this setup:
 First read this about systemd scripts
+
 * https://github.com/puma/puma/tree/master/tools/jungle/init.d
 
 Then read this about capistrano 3
+
 * https://github.com/seuros/capistrano-puma
 
 Now do these, but use my scripts instead.
 
-Here's the main (only differences)
+# Instructions
 
-1. I symlinked my nginx sites-enabled into the config in my project.
-* /etc/nginx/sites-enabled
-server -> /home/deploy/apps/server/current/config/nginx.conf
-2. These use the *standard* capistrano 3 generated nginx.conf and puma.rb
-Just be sure to create the directories 
+* I symlinked my nginx sites-enabled into the config in my project.
+  * /etc/nginx/sites-enabled
+  * server -> /home/deploy/apps/server/current/config/nginx.conf
+
+These use the *standard* capistrano 3 generated nginx.conf and puma.rb, Just be sure to create the directories:
+
 * shared/log
 * shared/tmp/pids
 * shared/tmp/sockets 
 
-Also, these scripts should work for rvm if you just change the run-puma to do the rvm stuff instead of rbenv.
+These scripts should work for rvm if you just change the run-puma to do the rvm stuff instead of rbenv.
 
 These scripts make it possible to run jungle init scripts with a capistrano 3 and rbenv setup.
 
-You can then start puma with
-* /etc/init.d/puma start (on server)
+You can then start puma with either of these:
 
-OR
+* /etc/init.d/puma start (on server)
 * cap staging puma:start
 
 
-The problem with existing scripts is that
-  1) systemd scripts assume location of pid and statefile is in subdirectory of app, whereas in capistrano 3 it is usually in shared/something...
-  
-  2) they don't work with rbenv and rvm because
+The problem with existing scripts is that:
 
-	a) the pumactl doesn't have bundle exec user environment
+1. systemd scripts assume location of pid and statefile is in subdirectory of app, whereas in capistrano 3 it is usually in shared/something...
+2. they don't work with rbenv and rvm because
+  1. the pumactl doesn't have bundle exec user environment
+  2. run-puma doesn't get the deploy user environment
 
-	b) run-puma doesn't get the deploy user environment
 
 Changes to the files:
+
 * Modified /etc/puma.conf to take a 2 extra parameters: pid_file, state_file (other cleanups)
 * Modified /etc/init.d/puma to take the extra parameters, and also to run pumactl in user context so bundle exec works
 * Modified puma-run to set rbenv environment before running bundle exec
 
-So, if you like this that's great. 
+So, if you like this star it.
 
-"I love PUMA! Threads are the new NIO :) " (you can quote me on that)
+"Puma: threads are the new NIO :) " (you can quote me on that)
 Thomas O'Rourke
 <thomas.orourke@upstreaminno.com>
