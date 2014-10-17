@@ -32,6 +32,7 @@ Then read this about capistrano 3
 Now do these, but use my scripts instead.
 
 Here's the main (only differences)
+
 1. I symlinked my nginx sites-enabled into the config in my project.
 * /etc/nginx/sites-enabled
 server -> /home/deploy/apps/server/current/config/nginx.conf
