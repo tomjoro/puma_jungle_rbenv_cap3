@@ -42,7 +42,7 @@ Now do these, but use my scripts instead.
 
 Follow instructions on installing jungle scripts.
 
-Replace /etc/puma.conf with my version (but change 'server' to your app-name). You can have multiple lines, with multiple apps.
+Replace /etc/puma.conf with my version *but change 'server' to your app-name*. You can have multiple lines, with multiple apps.
 
 Replace /usr/local/bin/run-puma with my version (uses rbenv, but you can change it to use rvm if you want)
 
@@ -61,13 +61,14 @@ require 'capistrano/bundler'
 require 'capistrano/puma'
 ```
 
-Add a puma.rb in app/config that has daemonize=true (because it seems to be false by default now)
+Add the puma.rb in app/config so that daemonize=true (because it seems to be false by default now)
 
 Deploy the project
 
 * cap staging deploy
 
 I generated the nginx site, so it is at app/config/nginx.conf, but symlinked my nginx sites-enabled into the config in my project instead of copying it to sites-enabled
+* Replacing the 'server' with your real app name *
 
   * sudo ln -nfs /home/deploy/apps/server/current/config/nginx.conf /etc/nginx/sites-enabled/server
 
@@ -80,7 +81,7 @@ Create these directories (I should have these as part of deploy...)
 * shared/tmp/sockets
 
 
-That's it
+That's it!
 
 
 # Running
@@ -98,10 +99,10 @@ You can then start puma with either of these:
 
 The problem with existing scripts is that:
 
-1. systemd scripts assume location of pid and statefile is in subdirectory of app, whereas in capistrano 3 it is usually in shared/something...
+1. systemd scripts assume location of pid and statefile is in subdirectory of app, whereas in capistrano 3 it is usually in shared/something... So, I modified puma script to take log and statefile as parameters.
 2. they don't work with rbenv and rvm because
-  1. the pumactl doesn't have bundle exec user environment
-  2. run-puma doesn't get the deploy user environment
+  1. the pumactl doesn't have bundle exec user environment (so I modified script to set the user before running)
+  2. run-puma doesn't get the deploy user environment (so added the shell stuff to get rbenv setup before executing)
 
 
 Changes to the files:
