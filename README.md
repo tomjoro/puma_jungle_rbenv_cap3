@@ -23,10 +23,10 @@ etc.
 With this much awesomeness, you assume someone else has this working already. I found lots of different examples, but nothing with this exact stack that worked the way I expected it to. Plus I wanted to use the default scripts, as much as possible.
 
 Here's how you use this setup:
-1. First read this about systemd scripts
+First read this about systemd scripts
 * https://github.com/puma/puma/tree/master/tools/jungle/init.d
 
-2. Then read this about capistrano 3
+Then read this about capistrano 3
 * https://github.com/seuros/capistrano-puma
 
 Now do these, but use my scripts instead.
