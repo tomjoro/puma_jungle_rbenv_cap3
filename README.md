@@ -18,7 +18,7 @@ So at the end of the day you *want* you all these to work, and play nicely toget
 - you have a deploy user that *doesn't* need sudo rights at all!
 - cap staging deploy
 - cap puma:start
-~~ cap nginx:restart ~~ (I don't use the nginx capistrano 3 nginx scripts, please start it manually)
+<del>cap nginx:restart</del> (I don't use the nginx capistrano 3 nginx scripts, please start it manually)
 - /etc/init.d/puma start (on server)
 - /etc/init.d/puma stop (on server)
 - everything should start on server reboot AND you can still use cap puma:restart, etc.
