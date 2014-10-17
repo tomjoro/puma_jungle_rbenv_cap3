@@ -25,6 +25,7 @@ With this much awesomeness, you assume someone else has this working already. I 
 Here's how you use this setup:
 1. First read this about systemd scripts
 * https://github.com/puma/puma/tree/master/tools/jungle/init.d
+
 2. Then read this about capistrano 3
 * https://github.com/seuros/capistrano-puma
 
