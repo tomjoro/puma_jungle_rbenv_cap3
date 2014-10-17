@@ -59,7 +59,7 @@ require 'capistrano/rails'
 require 'capistrano/rbenv'
 require 'capistrano/bundler'
 require 'capistrano/puma'
-``
+```
 
 Add a puma.rb in app/config that has daemonize=true (because it seems to be false by default now)
 
