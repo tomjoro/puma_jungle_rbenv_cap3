@@ -109,7 +109,7 @@ Changes to the files:
 
 * Modified /etc/puma.conf to take a 2 extra parameters: pid_file, state_file (other cleanups)
 * Modified /etc/init.d/puma to take the extra parameters, and also to run pumactl in user context so bundle exec works
-* Modified puma-run to set rbenv environment before running bundle exec
+* Modified run-puma to set rbenv environment before running bundle exec
 
 So, if you like this star it.
 
