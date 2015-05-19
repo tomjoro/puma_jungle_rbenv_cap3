@@ -99,7 +99,7 @@ You can then start puma with either of these:
 
 The problem with existing scripts is that:
 
-1. systemd scripts assume location of pid and statefile is in subdirectory of app, whereas in capistrano 3 it is usually in shared/something... So, I modified puma script to take log and statefile as parameters.
+1.  Scripts assume location of pid and statefile is in subdirectory of app, whereas in capistrano 3 it is usually in shared/something... So, I modified puma script to take log and statefile as parameters.
 2. they don't work with rbenv and rvm because
   1. the pumactl doesn't have bundle exec user environment (so I modified script to set the user before running)
   2. run-puma doesn't get the deploy user environment (so added the shell stuff to get rbenv setup before executing)
@@ -113,6 +113,6 @@ Changes to the files:
 
 So, if you like this star it.
 
-"Puma: threads are the new NIO :) " (you can quote me on that)
+"Puma: threads are the new NIO :) " 
 Thomas O'Rourke
 <thomas.orourke@upstreaminno.com>
