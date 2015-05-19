@@ -10,7 +10,7 @@ You've decided to deploy Rails on the world best production environment. Natural
 * Puma (threads are the new nio, and Puma is awesomeness)
 * Rbenv (ok, you debated about rvm vs rbenv and both will work with these instructions)
 * Capistrano 3 (you banged your head against the wall trying to update your cap 2 scripts, but feel you must keep up)
-* Systemd (because you realized upstart is a dying thing)
+* System scripts (not upstart and not systemd)
 * Pumactl (because pumactl works! and is very nice)
 
 So at the end of the day you *want* you all these to work, and play nicely together.
@@ -28,7 +28,7 @@ With this much awesomeness, you assume someone else has this working already. I 
 Also, I deploy as "deploy" user and I don't give it any sudo rights! So I have to deploy thie manually.
 
 Here's how you use this setup:
-First read this about systemd scripts
+First read this about jungle scripts
 
 * https://github.com/puma/puma/tree/master/tools/jungle/init.d
 
