@@ -10,7 +10,7 @@ You've decided to deploy Rails on the world best production environment. Natural
 * Puma (threads are the new nio, and Puma is awesomeness)
 * Rbenv (ok, you debated about rvm vs rbenv and both will work with these instructions)
 * Capistrano 3 (you banged your head against the wall trying to update your cap 2 scripts, but feel you must keep up)
-* System scripts (not upstart and not systemd)
+* System scripts - /etc/init.d/... (not upstart and not systemd)
 * Pumactl (because pumactl works! and is very nice)
 
 So at the end of the day you *want* you all these to work, and play nicely together.
